@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +11,19 @@ public class Main {
     }
 
     void run(Scanner scanner) {
-        // usupełnij metodę
-    }
+        String filePath = "countries.csv";
 
+        Map<String, Country> countryMap = FileUtils.getCountryMap(filePath);
+        if (!countryMap.isEmpty()) {
+            System.out.println("Podaj kod kraju, o którym chcesz zobaczyć informacje:");
+            String code = scanner.nextLine();
+            Country country = countryMap.get(code);
+
+            if (country != null) {
+                System.out.println(country);
+            } else {
+                System.out.println("Kod kraju " + code + " nie został znaleziony.");
+            }
+        }
+    }
 }
